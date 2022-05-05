@@ -1,0 +1,7 @@
+От:	zbxca
+Отправлено:	17 декабря 2021 г. 20:45
+Кому:	Чебаков Виталий Алексеевич {ЦА}; Дежурная группа ДИТ УБ; Kudin.M.Ole@omega.sbrf.ru; Алексеева Оксана Сергеевна {ЦА}; Алексеева Оксана Сергеевна - ВСБ; Semenov.E.Vy@omega.sbrf.ru
+Тема:	aita6 - PROBLEM: Completed: Data Guard Broker shutdown
+
+Zabbix	 АС	 Сервер	 СПО Сервера	 IP	 ID КЭ в SM	 ТРИГГЕР	 ТЭГИ	 ДАТА	 Описание триггера	 Событие	 График	 
+Мониторинг инфраструктуры промышленных сред SIGMA	 	aita6	 	10.20.33.211	 CI01994886	 *UNKNOWN*	 Autoclose:true, Hostname:aita6, Log:AlertLog, ProblemText:Completed: Data Guard Broker shutdown, Product:Oracle, SID:advis, app_oracle:Zabbix Prom:46840	 2021.12.17 19:44:35	 	2042171605	 График метрики <http://prom.zabbix.sigma.sbrf.ru/history.php?action=showgraph&itemids[]=20666429>  	
