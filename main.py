@@ -1,35 +1,44 @@
 import csv
-csv.register_dialect("Разделитель", delimiter=";", lineterminator="\n")
-b = {}
-lines2 = []
-def write_in_file(dictionary):
-    with open("export.csv", "a") as target_file:
-        fieldnames = dictionary.keys()
-        writer = csv.DictWriter(target_file, dialect='Разделитель', fieldnames=fieldnames)
-        writer.writerow(dictionary)
 
 
-with open("export2.txt", "r", encoding="utf-8") as file:
-    lines = file.read().split("\n")
-target_lines = []
-for line in lines:
-    print(line)
-    if "Zabbix" in line:
-        string = line
-    elif "Мониторинг" in line:
-        string += " " + line
-        target_lines.append(string)
-    else:
-        target_lines.append(line)
-print(target_lines)
-# for line in target_lines:
-#     if line == "":
-#         target_lines.remove(line)
-# lines2 = []
-# for line in target_lines:
-#     line2 = line.replace("\t", ' ')
-#     lines2.append(line2)
-# for line in lines2:
-#     if "Малашенко" in line:
-#         lines2.remove(line)
-# print(lines2)
+def delete_symbols(message):
+    message = line.replace("\t", " ")
+    message = line.replace("\r", " ")
+    message = line.replace("\n", " ")
+    return message
+
+
+a = []
+from_who = []
+date = []
+to = []
+theme = []
+messages = []
+
+text = ""
+with open("export.txt", "r", encoding="utf-8", newline='') as file:
+    for line in file:
+        # a.append(line)
+        if "От:" in line:
+            from_who.append(line[4:line.find("\r\n")])
+            messages.append(text)
+            text = ""
+        elif "Отправлено:" in line:
+            date.append(line[12:line.find("\r\n")])
+        elif "Кому:" in line:
+            to.append(line[6:line.find("\r\n")])
+        elif "Тема:" in line:
+            theme.append(line[6:line.find("\r\n")])
+        else:
+            line = delete_symbols(line)
+            text += line
+for message in messages:
+    if message == "":
+        messages.remove(message)
+
+with open("export.csv", "w", newline="") as target_file:
+    writer = csv.writer(target_file, delimiter=';')
+    for from_who_items, date_items, to_items, theme_items, messages_items in zip(from_who, date, to, theme, messages):
+        writer.writerow([from_who_items] + [date_items] + [to_items] + [theme_items] + [messages_items])
+
+
